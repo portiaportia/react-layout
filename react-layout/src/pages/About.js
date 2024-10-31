@@ -1,5 +1,12 @@
+import SlideShow from "../components/SlideShow";
+
 const About = () => {
-    return <h1>About Page</h1>;
+    return (
+        <>
+            <h3>About</h3>
+            <SlideShow />
+        </>
+    );
 };
 
 export default About;
