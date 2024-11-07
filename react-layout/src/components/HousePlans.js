@@ -21,7 +21,8 @@ const HousePlans = () => {
                 name={housePlan.name} 
                 size={housePlan.size}
                 bedrooms={housePlan.bedrooms}
-                bathrooms={housePlan.bathrooms} />
+                bathrooms={housePlan.bathrooms}
+                main_image = {housePlan.main_image} />
         ))}
        </div>
     );
