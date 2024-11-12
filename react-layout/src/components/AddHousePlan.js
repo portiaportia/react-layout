@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 const AddHousePlan = (props) => {
   const [inputs, setInputs] = useState({});
+  const [result, setResult] = useState("");
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -16,6 +17,23 @@ const AddHousePlan = (props) => {
     setInputs((values)=>({...values,[name]:value}));
   };
 
+  const addToServer = async(event) => {
+    event.preventDefault();
+    setResult("Sending....");
+
+    const formData = new FormData(event.target);
+    console.log(...formData);
+
+    const response = await fetch("http://localhost:3001/api/house_plans/",{
+      method:"POST",
+      body:formData
+    });
+
+    if(response.status == 200){
+      setResult("House Plan successfully added!");
+    }
+  };
+
 
   return (
     <div id="add-dialog" className="w3-modal">
@@ -24,7 +42,7 @@ const AddHousePlan = (props) => {
           <span id="dialog-close" className="w3-button w3-display-topright" onClick={props.closeDialog}>
             &times;
           </span>
-          <form id="add-property-form">
+          <form id="add-property-form" onSubmit={addToServer}>
             <p>
               <label htmlFor="name ">Property Name:</label>
               <input type="text" id="name" name="name" required value={inputs.name || ""} onChange={handleChange} />
@@ -54,6 +72,7 @@ const AddHousePlan = (props) => {
             <p>
               <button type="submit">Submit</button>
             </p>
+            <p>{result}</p>
           </form>
         </div>
       </div>
