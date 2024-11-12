@@ -5,6 +5,7 @@ import AddHousePlan from "./AddHousePlan";
 
 const HousePlans = () => {
   const [houses, setHouses] = useState([]);
+  const [showAddDialog, setShowAddDialog] = useState(false);
 
   //wait until after page is rendered to do the asyncronous loading
   useEffect(() => {
@@ -14,9 +15,26 @@ const HousePlans = () => {
     })();
   }, []);
 
+  const openAddDialog = () => {
+    setShowAddDialog(true);
+  };
+
+  const closeAddDialog = () => {
+    setShowAddDialog(false);
+  };
+
   return (
     <div className="house-plans">
       <h3>House Plans</h3>
+
+      <button id="add-house" onClick={openAddDialog}>+</button>
+
+      {showAddDialog ? (
+        <AddHousePlan closeDialog={closeAddDialog}
+       />
+      ):("")}
+      
+
       <div className="columns">
         {houses.map((housePlan) => (
           <HousePlan
