@@ -31,6 +31,11 @@ const AddHousePlan = (props) => {
 
     if(response.status == 200){
       setResult("House Plan successfully added!");
+      props.showNewHouse(await response.json());
+      event.target.reset();
+      props.closeDialog();
+    } else {
+      setResult("Error adding house");
     }
   };
 

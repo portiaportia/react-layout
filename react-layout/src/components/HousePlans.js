@@ -23,6 +23,10 @@ const HousePlans = () => {
     setShowAddDialog(false);
   };
 
+  const updateHousePlans = (housePlan) => {
+    setHouses((houses)=>[...houses, housePlan]);
+  }
+
   return (
     <div className="house-plans">
       <h3>House Plans</h3>
@@ -30,7 +34,7 @@ const HousePlans = () => {
       <button id="add-house" onClick={openAddDialog}>+</button>
 
       {showAddDialog ? (
-        <AddHousePlan closeDialog={closeAddDialog}
+        <AddHousePlan closeDialog={closeAddDialog} showNewHouse={updateHousePlans}
        />
       ):("")}
       
