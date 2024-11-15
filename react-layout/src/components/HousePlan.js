@@ -9,8 +9,6 @@ const HousePlan = (props) => {
   const [housePlan, setHousePlan] = useState(props);
   const [showHousePlan, setShowHousePlan] = useState(true);
 
-  const imageSrc = `http://localhost:3001/images/${props.main_image}`;
-
   const openEditDialog = () => {
     setShowEditDialog(true);
   };
@@ -68,7 +66,10 @@ const HousePlan = (props) => {
 
           <section className="house-plan columns">
             <section className="feature-image">
-              <img src={imageSrc} alt={housePlan.name} />
+              <img
+                src={"http://localhost:3001/images/" + housePlan.main_image}
+                alt={housePlan.name}
+              />
             </section>
             <section className="info">
               <header className="columns">

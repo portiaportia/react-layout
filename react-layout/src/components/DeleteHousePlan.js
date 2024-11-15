@@ -6,7 +6,7 @@ const DeleteHousePlan = (props) => {
 
   const deleteHousePlan = async () => {
     const response = await fetch(
-      `http://localhost:3001/api/houses/${props._id}`,
+      `http://localhost:3001/api/house_plans/${props._id}`,
       {
         method: "DELETE",
       }
