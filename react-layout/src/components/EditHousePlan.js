@@ -24,7 +24,26 @@ const EditHousePlan = (props) => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const onSubmit = () => {};
+  const onSubmit = async(event) => {
+    event.preventDefault();
+    setResult("Sending....");
+
+    const formData = new FormData(event.target);
+    console.log(...formData);
+    const response = await fetch(`http://localhost:3001/api/house_plans/${props._id}`,{
+      method:"PUT",
+      body:formData
+    });
+
+    if(response.status === 200){
+      setResult("House plan successfully updated");
+      event.target.reset();
+      props.updateHouse(await response.json());
+      props.closeDialog();
+    } else {
+      setResult("Error edditing your house plan. We're sorry");
+    }
+  };
 
   return (
     <div id="edit-dialog" className="w3-modal">
